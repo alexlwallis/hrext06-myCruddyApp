@@ -3,6 +3,10 @@ $(document).ready(function(){
 
   // write to local storage from input when button save clicked
   $('.btn-submit').on('click', function(){
+
+    //set limit of 250 things that can be in localStorage before??
+
+
     localStorage.setItem('inputFieldValue', $('.text-entry').val());
     var myItemInStorage = localStorage.getItem('inputFieldValue');
     console.log('myItemInStorage', myItemInStorage);
@@ -16,5 +20,10 @@ $(document).ready(function(){
   $('.btn-delete').on('click', function(){
     localStorage.removeItem('inputFieldValue');
   });
+
+  // delete all from local storage when clicked
+  $('.btn-delete-all').on('click', function(){
+    localStorage.clear()
+  })
 
 });
