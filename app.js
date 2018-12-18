@@ -2,17 +2,28 @@ $(document).ready(function(){
   console.log('jQuery loaded');
 
   // write to local storage from input when button save clicked
-  var value = 0
+  // var value = 0
 
-  $('.btn-submit').on('click', function(){
-    value++
-    localStorage.setItem(value, $('.text-entry').val());
-    var myItemInStorage = localStorage.getItem(value);
+  // $('.btn-submit').on('click', function(){
+  //   value++
+  //   localStorage.setItem(value, $('.text-entry').val());
+  //   var myItemInStorage = localStorage.getItem(value);
+  //   $('.list-display-field').text($('.text-entry').val()); // ??
+  // });
 
-    // display the value here, displays what we put in the box
-    //TODO: Need to have display change when 
-    $('.list-display-field').text($('.text-entry').val()); // ??
-
+  $('.btn-submit-both').on('click', function(){
+    //value++
+    var $type = $('.text-entry-type').val()
+    var $cost = $('.text-entry-cost').val()
+    localStorage.setItem($type, $cost);
+    $('.table').append(`
+      <tr>
+        <td>`+$type+`</td>
+        <td>`+$cost+`</td>
+      </tr>
+    `)
+    //localStorage.setItem(value, $('.text-entry').val());
+    //$('.list-display-field').text($('.text-entry').val()); // ??
   });
 
   // delete from local storage when delete button clicked
@@ -41,3 +52,14 @@ $(document).ready(function(){
   })
 
 });
+
+/*
+  Want to create simple budgetting app
+    The layout is that there are tables; w/in table you have item and price and
+    there are buttons to add more tables, delete item/price etc, and there is a
+    large pie chart at the bottom color coded, (look into d3 or w/e) on how to
+    do it 
+
+    Step 1:
+      Look into how to create tables
+*/
