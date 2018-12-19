@@ -6,3 +6,8 @@ table {
 	width: 60%;
 	height: 100px;
 }
+
+.edit{
+	display: flex;
+	align-content: flex-end;
+}
