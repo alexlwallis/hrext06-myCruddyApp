@@ -8,36 +8,47 @@ $(document).ready(function(){
 
     //Why the fuck is this a string that needs to be converted????
     var num = Number($cost)
-    if (typeof $type === 'string' && typeof num === 'number'){
-      localStorage.setItem($type, $cost);
-      $('.table').append(`
-        <tr class="inputted`+$type+`">
-          <td>`
-          +$type+
-          `<button class="btn-edit-type" type="button">edit</button>
-          <button class="btn-delete" type="button">delete</button></button>
-           </td>
-          <td>`
-          +$cost+
-          `<button class="btn-edit-cost" type="button">edit</button>
-           </td>
-        </tr>
-      `)
+    if (!localStorage.hasOwnProperty($type)){
+      if (typeof $type === 'string' && typeof num === 'number'){
+        localStorage.setItem($type, num);
+        $('.table').append(`
+          <tr class="inputted`+$type+`">
+            <td>`
+              +$type+
+              `<button class="btn-delete" type="button">delete</button></button>
+            </td>
+            <td>`+$cost+`</td>
+          </tr>
+        `)
+      }
+    } else {
+      //If you want to change the value of something already 
+
+      localStorage.removeItem($type)
+      $(".inputted"+$type).remove()
+      if (typeof $type === 'string' && typeof num === 'number'){
+        localStorage.setItem($type, num);
+        $('.table').append(`
+          <tr class="inputted`+$type+`">
+            <td>`
+              +$type+
+              `<button class="btn-delete" type="button">delete</button></button>
+            </td>
+            <td>`+$cost+`</td>
+          </tr>
+        `)
+      }
     }
     var $type = $('.text-entry-type').val('')
     var $cost = $('.text-entry-cost').val('')
-      //}
-    // }
   });
 
   //Look into finding the localStorage data and see if you can convert the key pair values
   //into a pair
 
-
-
-
   $('.table').on('click', '.btn-delete' ,function(e){
-    var deleteText = (e.target.previousSibling.previousSibling.previousSibling.nodeValue)
+    var deleteText = (e.target.previousSibling.data)
+    //var deleteText = (e.target.previousSibling.previousSibling.previousSibling.nodeValue)
     localStorage.removeItem(deleteText)
     var $type = $('.text-entry-type').val()
     console.log(".inputted"+deleteText)
@@ -45,6 +56,9 @@ $(document).ready(function(){
   })
 
 
+  $('.table').on('click', '.btn-edit-type' ,function(e){
+   
+  })
 
 
   $('.btn-delete-all').on('click', function(){
@@ -59,7 +73,7 @@ $(document).ready(function(){
     Object.keys(localStorage).forEach(function(key){
       var smallArr = []
       var key = key
-      var value = Number(localStorage.getItem(key))
+      var value = (localStorage.getItem(key))
       smallArr.push(key, value)
       entirety.push(smallArr)
       smallArr = []
