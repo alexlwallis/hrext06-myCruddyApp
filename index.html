@@ -2,19 +2,28 @@
 <html>
   <head>
     <title>HREXT06 Cruddy App</title>
-    <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!-- C3 scripts/links -->
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.11/c3.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.css">
+
+    <!--Jquery, also look into whats up w/ jqueryui -->
     <script
             src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+
     <script src="app.js"></script>
   </head>
   <body>
   <div>
-    <!--
-    <input class="text-entry" type="text" placeholder="enter your information">
-    <button class="btn-submit" type="button">save value</button>
-      -->
+    <button class='btn-generate-chart' type="button">Generate Chart</button>
     <button class="btn-delete-all" type="button">delete cache</button>
   </div>
   <div class="list-display-field">
@@ -27,17 +36,17 @@
       <tr>
         <td>
           <input class="text-entry-type" type="text" placeholder="Type of Spending?">
-          <!-- <button class="btn-submit-type" type="button">save value</button>
-          <button class="btn-delete" type="button">delete value</button> -->
         </td>
         <td>
           <input class="text-entry-cost" type="text" placeholder="How much?">
-<!--           <button class="btn-submit-cost" type="button">save value</button>
- -->        </td>
+        </td>
       </tr>
     </table>
-    
-    <button class="btn-submit-both" type="button">save value</button>
+    <div>
+      <button class="btn-submit-both" type="button">save value</button>
+      <div id='dialog'></div>
+    </div>
   </div>
+  <div class='chart'></div>
   </body>
 </html>

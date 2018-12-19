@@ -1,70 +1,85 @@
 $(document).ready(function(){
   console.log('jQuery loaded');
 
-  // write to local storage from input when button save clicked
-  // var value = 0
-
-  // $('.btn-submit').on('click', function(){
-  //   value++
-  //   localStorage.setItem(value, $('.text-entry').val());
-  //   var myItemInStorage = localStorage.getItem(value);
-  //   $('.list-display-field').text($('.text-entry').val()); // ??
-  // });
 
   $('.btn-submit-both').on('click', function(e){
-    //values from the text entry boxes
     var $type = $('.text-entry-type').val()
     var $cost = $('.text-entry-cost').val()
-    for (var keys in localStorage){
-      //now you cannot overwrite the key's value 
-      if (!localStorage.hasOwnProperty($type)){
-        localStorage.setItem($type, $cost);
-        $('.table').append(`
-          <tr class="inputted`+$type+`">
-            <td>`
-            +$type+
-            `<button class="btn-edit-type" type="button">edit</button>
-            <button class="btn-delete" type="button">delete</button></button>
-             </td>
-            <td>`
-            +$cost+
-            `<button class="btn-edit-cost" type="button">edit</button>
-             </td>
-          </tr>
-        `)
-      }
+
+    //Why the fuck is this a string that needs to be converted????
+    var num = Number($cost)
+    if (typeof $type === 'string' && typeof num === 'number'){
+      localStorage.setItem($type, $cost);
+      $('.table').append(`
+        <tr class="inputted`+$type+`">
+          <td>`
+          +$type+
+          `<button class="btn-edit-type" type="button">edit</button>
+          <button class="btn-delete" type="button">delete</button></button>
+           </td>
+          <td>`
+          +$cost+
+          `<button class="btn-edit-cost" type="button">edit</button>
+           </td>
+        </tr>
+      `)
     }
+    var $type = $('.text-entry-type').val('')
+    var $cost = $('.text-entry-cost').val('')
+      //}
+    // }
   });
+
+  //Look into finding the localStorage data and see if you can convert the key pair values
+  //into a pair
+
+
 
 
   $('.table').on('click', '.btn-delete' ,function(e){
-    //var edittext = (e.target.previousSibling.nodeValue)
-    //console.log(e.target.previousSibling.previousElementSibling.previousSibling.data)
     var deleteText = (e.target.previousSibling.previousSibling.previousSibling.nodeValue)
     localStorage.removeItem(deleteText)
     var $type = $('.text-entry-type').val()
-    console.log(".inputted"+$type)
-    $(".inputted"+$type).remove()
+    console.log(".inputted"+deleteText)
+    $(".inputted"+deleteText).remove()
   })
 
 
-  // delete from local storage when delete button clicked
-  // using the length property of localStorage I find out how many pairs there are
-  // and using the 
-  // $('.btn-delete').on('click', function(){
-  //   var len = localStorage.length
-  //   var key = localStorage.key(len-1)
-  //   console.log('Key: '+key)
-  //   localStorage.removeItem(len);
-  // });
 
-  // delete all from local storage when clicked
+
   $('.btn-delete-all').on('click', function(){
+    Object.keys(localStorage).forEach(function(key){
+      $('.inputted'+key).remove()
+    })
     localStorage.clear()
-    $('.table').remove('.inputted')
+  })
+
+  var convert = () => {
+    let entirety = []
+    Object.keys(localStorage).forEach(function(key){
+      var smallArr = []
+      var key = key
+      var value = Number(localStorage.getItem(key))
+      smallArr.push(key, value)
+      entirety.push(smallArr)
+      smallArr = []
+    })
+    return entirety
+  }
+
+  $('.btn-generate-chart').on('click', function(){
+    var chart = c3.generate({
+    bindto: '.chart',
+    data: {
+      columns: convert(),
+      type: 'pie',
+        }
+     })
   })
 
 });
+
+
 
 /*
   Want to create simple budgetting app
