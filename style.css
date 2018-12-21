@@ -1,4 +1,4 @@
-table, th, td{
+/*table, th, td{
 	border: 1px solid black;
 }
 
@@ -10,4 +10,35 @@ table {
 .edit{
 	display: flex;
 	align-content: flex-end;
+}*/
+
+.container{
+	background-color: #E6E6FA;
+}
+
+.part1{
+	display: flex;
+	justify-content: center;
+}
+
+.exp-list{
+	max-width: 280px;
+	margin: center;
+	padding-left: 40%;
+}
+
+.exp-buttons{
+	display: flex;
+	justify-content: center;
+	
+}
+
+.purchase-inputs{
+	display: flex;
+	justify-content: center;
+}
+
+.purchase-buttons{
+	display: flex;
+	justify-content: center;
 }

@@ -22,7 +22,47 @@
     <script src="app.js"></script>
   </head>
   <body>
-  <div>
+  <div class="container">
+      <h1 style="display: flex; justify-content: center">Budget Helper</h1>
+      <div class="part1">
+        <input class="budget" type="number" placeholder="What's your budget?"></input>
+        <button class="btn-budget">Submit budget</button>
+      </div>
+    <form>
+      <br/>
+      <br/>
+      <p style="display: flex; justify-content: center">Expenditure types and desired percentage of total budget<p>
+      <div class='exp-list'>
+        <input class="exp-types" type="text" placeholder="Expenditure type"></input>
+        <input class="exp-percent" type="number" placeholder="Percentage?"></input>
+      </div>
+      <br/>
+    <div class="exp-buttons">
+      <button class="btn-add-more" >Add more?</button>
+      <button class="btn-submit">Submit</button>
+    </div>
+    </form>
+    <div class="purchases">
+      <p style="display: flex; justify-content: center">What expenditure types, how much, comment?<p>
+          <div class="purchase-inputs">
+            <select class="purchase-exp-types"/>
+            <input class="purchase-cost" placeholder="How Much?"/>
+            <input class="purchase-comment" placeholder="Comment?"/>
+          </div>
+          <div class="purchase-buttons">
+            <button class="btn-purchase-submit">Add data</button>
+            <button class='btn-finish'>Finished</button>
+            <button style="display: flex; justify-content: center" class="btn-delete-cache">Delete Cache</button>
+          </div>
+      <div class="information">
+        <div class="charts">
+          <div id="chartIdeal"></div>
+          <div id="chartActual"/></div>
+        </div>
+      </div>
+
+    </div>
+  <!--
     <button class='btn-generate-chart' type="button">Generate Chart</button>
     <button class="btn-delete-all" type="button">delete cache</button>
   </div>
@@ -48,5 +88,6 @@
     </div>
   </div>
   <div class='chart'></div>
+-->
   </body>
 </html>
